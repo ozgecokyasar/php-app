@@ -14,5 +14,6 @@
 Route::get('/', 'PagesController@index');
 
 Route::resource('posts', 'PostsController');
+
+Route::post('reviews/{post_id}', ['uses' => 'ReviewsController@store', 'as' => 'reviews.store']);
 Auth::routes();
-Route::get('/dashboard', 'DashboardController@index');
