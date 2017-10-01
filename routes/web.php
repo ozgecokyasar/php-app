@@ -1,5 +1,10 @@
 <?php
 
+use App\User;
+use App\Post;
+use App\Http\Resources\Post as PostResource;
+use App\Http\Resources\PostCollection;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +22,8 @@ Route::resource('posts', 'PostsController');
 
 Route::post('reviews/{post_id}', ['uses' => 'ReviewsController@store', 'as' => 'reviews.store']);
 Auth::routes();
+
+Route::get('/json', function() {
+  $posts = Post::all();
+  return new PostCollection($posts);
+});
