@@ -1,21 +1,13 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>LSAPP</title>
+@section('content')
+    <a href="/posts" class="btn btn-default">Go Back</a>
+    <h1>{{$post->title}}</h1>
+    <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
+    <br><br>
+    <div>
+        {!!$post->body!!}
+    </div>
 
-    </head>
-    <body>
-      <nav>
-          <li><a href="/posts">Go back to the HomePage</a></li>
-      </nav>
-      <h1>Post title: {{$post->title}}</h1>
-      <p>body: {{$post->body}}</p>
-      <hr>
-      <p>created at: {{$post->created_at}}</p>
-
-    </body>
-</html>
+    <hr>
+@endsection
