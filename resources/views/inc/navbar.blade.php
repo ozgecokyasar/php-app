@@ -11,9 +11,6 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -24,6 +21,8 @@
 
             <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/posts/create">New Post</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
