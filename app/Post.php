@@ -13,9 +13,7 @@ class Post extends Model
    * @var array
    */
 
-   protected $fillable = [
-     'title', 'body'
-   ];
+   protected $fillable = array('title', 'body');
 
   public $timestamps = false;
 

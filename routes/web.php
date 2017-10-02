@@ -27,3 +27,5 @@ Route::get('/json', function() {
   $posts = Post::all();
   return new PostCollection($posts);
 });
+
+Route::resource('api/posts', 'PostsController');

@@ -7,6 +7,8 @@ use App\Post;
 
 class PostCollection extends ResourceCollection
 {
+
+     protected $fillable = array('title', 'body');
     /**
      * Transform the resource collection into an array.
      *
@@ -15,16 +17,7 @@ class PostCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-      return [
-        'title' => $this->title,
-        'body' => $this->body,
-        'reviews' => $this->reviews,
-      ];
-    }
+      return parent::toArray($request);
 
-    public function with($request) {
-      return [
-        'version' => '2.0.0'
-      ];
     }
 }

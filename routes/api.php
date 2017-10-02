@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('api/todo', ['uses' => 'PostsController@index', 'middleware' => 'simpleauth']);
+Route::post('api/todo', ['uses' => 'PostsController@store', 'middleware' => 'simpleauth']);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Post;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Post;
 use DB;
 
 class PostsController extends Controller
@@ -17,8 +17,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('title', 'desc')->paginate(10);
-        return view('posts.index')->with('posts', $posts);
+        $posts = Post::all();
+        return response()->json($posts);
+        // return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -39,18 +40,20 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-          'title' => 'required',
-          'body'=> 'required'
-        ]);
-
+      $validator = Validator::make($request->all(),[
+        'title' => 'required'
+      ]);
+      if($validator->fails()){
+        $response = array('response' => $validator -> messages(), 'success' => false);
+        return $response;
+      } else {
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Created');
+        return $response()->json($post);
+      };
     }
 
     /**
@@ -62,7 +65,8 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        // return view('posts.show')->with('post', $post);
+        return response()->json($post);
     }
 
     /**

@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\Resource;
 
 class Post extends Resource
 {
+
+     protected $fillable = array('title', 'body');
     /**
      * Transform the resource into an array.
      *
@@ -19,6 +21,8 @@ class Post extends Resource
           'body' => $this->body,
           'reviews' => $this->reviews,
         ];
+
+
     }
 
 
